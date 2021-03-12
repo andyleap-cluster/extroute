@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: extroute
+  namespace: linode
+spec:
+  selector:
+    matchLabels:
+      app: extroute
+  template:
+    metadata:
+      labels:
+        app: extroute
+    spec:
+      containers:
+      - image: ghcr.io/andyleap-cluster/extroute
+        name: extroute
+        args:
+        - "./main"
+        - "--route=80>singress:80"
+        - "--route=443>singress:443"
+        - "--route=6476>scanner.aqueduct:6476"
+        - "--route=2200>sshsweeper.sshsweeper:2200"
+        ports:
+          - containerPort: 80
+            name: http
+            hostPort: 80
+          - containerPort: 443
+            name: https
+            hostPort: 443
+          - containerPort: 6476
+            name: aqueduct
+            hostPort: 6476
+          - containerPort: 2200
+            name: sshsweeper
+            hostPort: 2200

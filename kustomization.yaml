@@ -1,0 +1,5 @@
+resources:
+- extroute.yaml
+images:
+- name: ghcr.io/andyleap-cluster/extroute
+  newTag: latest

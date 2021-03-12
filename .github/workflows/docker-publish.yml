@@ -88,5 +88,5 @@ jobs:
     - run: git checkout gitops
     - run: kustomize edit set image ghcr.io/andyleap-cluster/${IMAGE_NAME}:commit-${GITHUB_SHA}
     - run: git add .
-    - run: git commit -m "Set `${IMAGE_NAME}` image tag to `${GITHUB_SHA}`"
+    - run: git commit -m "Set `${IMAGE_NAME}` image tag to `${GITHUB_SHA}`" --author="Github Action <>"
     - run: git push origin gitops

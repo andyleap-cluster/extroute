@@ -74,3 +74,18 @@ jobs:
           docker tag image $IMAGE_ID:commit-$HASH
           docker push $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:commit-$HASH
+
+  create-deployment-branch:
+    runs-on: ubuntu-latest
+    needs:
+    - push
+    steps:
+    - uses: imranismail/setup-kustomize@v1
+      with:
+        kustomize-version: "3.1.0"
+    - run: git fetch gitops
+    - run: git checkout gitops
+    - run: kustomize edit set image ghcr.io/andyleap-cluster/${IMAGE_NAME}:commit-${GITHUB_SHA}
+    - run: git add .
+    - run: git commit -m "Set `${IMAGE_NAME}` image tag to `${GITHUB_SHA}`"
+    - run: git push origin gitops

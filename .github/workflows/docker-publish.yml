@@ -84,7 +84,7 @@ jobs:
     - uses: imranismail/setup-kustomize@v1
       with:
         kustomize-version: "3.1.0"
-    - run: git fetch gitops
+    - run: git fetch origin gitops
     - run: git checkout gitops
     - run: kustomize edit set image ghcr.io/andyleap-cluster/${IMAGE_NAME}:commit-${GITHUB_SHA}
     - run: git add .

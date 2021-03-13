@@ -1,5 +1,9 @@
 resources:
 - extroute.yaml
 images:
+- name: ghcr.io/andyleap-cluster/
+  newTag: commit-670f735f1e62997ed2fc97210cffc842a55405af
 - name: ghcr.io/andyleap-cluster/extroute
   newTag: latest
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization

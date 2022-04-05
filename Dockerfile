@@ -1,4 +1,5 @@
 FROM golang:alpine as builder
+RUN apk add git
 RUN mkdir /build 
 WORKDIR /build 
 ADD go.mod go.sum /build/

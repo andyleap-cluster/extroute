@@ -131,7 +131,7 @@ func main() {
 								Src:     addr,
 								timeout: time.Now().Unix(),
 							}
-							conn.Dst, err = net.DialUDP("tcp", nil, toUDP)
+							conn.Dst, err = net.DialUDP("udp", nil, toUDP)
 							if err != nil {
 								log.Fatal(err)
 							}

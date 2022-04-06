@@ -29,6 +29,7 @@ type UDPProxy struct {
 	lock  sync.RWMutex
 }
 
+// testing actions
 func main() {
 	_, err := flags.Parse(&options)
 	if err != nil {
